@@ -4,45 +4,92 @@
 <head>
     <title>Save form Data in a Text File using JavaScript</title>
     <style>
-        * {
+        /* A simple reset. */
+        *,
+        ::before,
+        ::after {
+            margin: 0;
             box-sizing: border-box;
         }
 
-        div {
-            padding: 10px;
-            background-color: #f6f6f6;
-            overflow: hidden;
+        *+* {
+            margin-top: 16px;
+            margin-top: 1rem;
         }
 
-        input[type=text],
-        textarea,
-        select {
-            font: 17px Calibri;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        /* Set up fonts, colors and all that jazz. */
+        body {
+            background: #f9fdfe;
+            color: #686a69;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            line-height: 1.75;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        input[type=button] {
-            font: 17px Calibri;
-            width: auto;
+        /* Headings use a different font because they’re hipsters. */
+        h1,
+        h2 {
+            color: #2a2f2c;
+            font-family: Lato, sans-serif;
+            font-weight: 300;
+            line-height: 1.125;
+        }
+
+        /* Set up general layout rules for outer containers. */
+        .content {
+            width: 90vw;
+            max-width: 550px;
+            margin: 8vh auto;
+        }
+
+        .title {
+            border-bottom: 1px solid #cdcfcf;
+        }
+
+        .contact-form__button {
+            display: block;
+            margin: 8px 16px 0;
+            margin: 0.5rem 1rem 0;
+            padding: 0 16px 2px;
+            padding: 0 1rem 0.125rem;
+            background-color: #686a69;
+            border: 0;
+            color: #f9fdfe;
+            font-family: lato, sans-serif;
+            font-size: 100%;
+            letter-spacing: 0.05em;
+            line-height: 1.5;
+            text-transform: uppercase;
+            -webkit-transition: 150ms all linear;
+            transition: 150ms all linear;
+        }
+
+        .contact-form__button:hover,
+        .contact-form__button:active,
+        .contact-form__button:focus {
+            background: #2a2f2c;
             cursor: pointer;
-            padding: 7px;
+            outline: 0;
         }
     </style>
 </head>
 
-<body>
-    <h1>Event Planner</h1>
+<body class="content">
+    <h2 class="title">Event Planner</h2>
+
+
 
 
     <div>
-        <input type="button" onclick="location.href='add-event.html';" value="Add New Event" />
+        <input type="button" class="contact-form__button" onclick="location.href='add-event.html';"
+            value="Add New Event" />
     </div>
 
     <div>
-        <input type="button" onclick="location.href='sign-up.html';" value="Sign Up" />
+        <input type="button" class="contact-form__button" onclick="location.href='sign-up.html';" value="Sign Up" />
     </div>
 
 
