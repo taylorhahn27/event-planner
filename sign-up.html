@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Save form Data in a Text File using JavaScript</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            padding: 10px;
+            background-color: #f6f6f6;
+            overflow: hidden;
+        }
+
+        input[type=text],
+        textarea,
+        select {
+            font: 17px Calibri;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type=button] {
+            font: 17px Calibri;
+            width: auto;
+            float: right;
+            cursor: pointer;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sign up for event form
+        New Contacts
+            First
+            Last
+            Email
+
+        Existing contacts
+            List of events
+            First name
+            Last name
+            Email
+            Submit button -->
+
+    <div>
+
+        <!-- Add few elements to the form -->
+        <h1>Event Sign Up</h1>
+
+        <div>
+            <select id="events">
+                <option selected value="">-- Events --</option>
+                <option value="India">Tech Trends</option>
+                <option value="Japan">5G</option>
+                <option value="USA">IOT</option>
+            </select>
+        </div>
+        <!-- may need to add event dates also -->
+        <div>
+            <input type="text" id="firstName" placeholder="First Name" />
+        </div>
+        <div>
+            <input type="text" id="lastName" placeholder="Last Name" />
+        </div>
+        <div>
+            <input type="text" id="email" placeholder="Email" />
+        </div>
+        <div>
+            <input type="button" id="bt" value="Save data to file" onclick="saveFile()" />
+        </div>
+
+    </div>
+
+</body>
+<script>
+    let saveFile = () => {
+
+        // Get the data from each element on the form.
+        const events = document.getElementById('events');
+        const firstName = document.getElementById('eventName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+
+        // This variable stores all the data.
+        let data =
+            '\r Event Name: ' + eventName.value + ' \r\n ' +
+            'Event Location: ' + eventLocation.value + ' \r\n ' +
+            'Company Sponsor: ' + companySponsor.value + ' \r\n ' +
+            'Event Date: ' + eventDate.value + ' \r\n ' +
+            'Event Description: ' + eventDescription.value;
+
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([data], {
+            type: 'text/plain'
+        });
+        const sFileName = 'formData.txt'; // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        } else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click();
+    }
+</script>
+
+</html>
