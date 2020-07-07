@@ -4,139 +4,341 @@
 <head>
     <title>Save form Data in a Text File using JavaScript</title>
     <style>
-        * {
+        /* A simple reset. */
+        *,
+        ::before,
+        ::after {
+            margin: 0;
             box-sizing: border-box;
         }
 
-        div {
-            padding: 10px;
-            background-color: #f6f6f6;
+        /* Heydon Pickering’s lobotomized owl. Details: https://bit.ly/1H7MXUD */
+        *+* {
+            margin-top: 16px;
+            margin-top: 1rem;
+        }
+
+        /* Set up fonts, colors and all that jazz. */
+        body {
+            background: #f9fdfe;
+            color: #686a69;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            line-height: 1.75;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Headings use a different font because they’re hipsters. */
+        h1,
+        h2 {
+            color: #2a2f2c;
+            font-family: Lato, sans-serif;
+            font-weight: 300;
+            line-height: 1.125;
+        }
+
+        /* Set up general layout rules for outer containers. */
+        .content,
+        .results {
+            width: 90vw;
+            max-width: 550px;
+            margin: 8vh auto;
+        }
+
+        .content__heading {
+            font-size: 125%;
+        }
+
+        .content__lede {
+            margin-top: 8px;
+            margin-top: 0.5rem;
+            font-size: 87.5%;
+        }
+
+        .results__heading {
+            font-size: 110%;
+        }
+
+        .results__display-wrapper {
+            margin-top: 16px;
+            margin-top: 1rem;
+            padding: 8px 16px;
+            padding: 0.5rem 1rem;
+            background: #f9fdfe;
+            border: 1px solid #cdcfcf;
+            overflow-x: scroll;
+        }
+
+        .contact-form {
+            position: relative;
+            display: block;
+            margin: 0;
+            padding: 16px 0 32px;
+            padding: 1rem 0 2rem;
+            border-top: 1px solid #cdcfcf;
+            border-bottom: 1px solid #cdcfcf;
             overflow: hidden;
         }
 
-        input[type=text],
-        textarea,
-        select {
-            font: 17px Calibri;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .contact-form__input-group {
+            margin-top: 4px;
+            margin-top: 0.25rem;
+            padding: 8px 16px;
+            padding: 0.5rem 1rem;
         }
 
-        input[type=button] {
-            font: 17px Calibri;
+        .contact-form__label {
+            display: block;
+            color: #414643;
+            font-family: Lato, sans-serif;
+            font-size: 75%;
+            line-height: 1.125;
+        }
+
+        .contact-form__label--checkbox-group {
+            display: inline-block;
+            margin-right: 16px;
+            margin-right: 1rem;
+            font-size: 75%;
+        }
+
+        .contact-form__label--checkbox,
+        .contact-form__label--radio {
+            display: inline-block;
+            margin-left: 4px;
+            margin-left: 0.25rem;
+        }
+
+        .contact-form__input {
+            display: block;
+            margin-top: 0;
+            padding: 8px 12px;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #cdcfcf;
+            width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-size: 1rem;
+            -webkit-transition: 150ms border-color linear;
+            transition: 150ms border-color linear;
+        }
+
+        .contact-form__input--checkbox,
+        .contact-form__input--radio {
+            display: inline-block;
             width: auto;
-            float: right;
+        }
+
+        .contact-form__input--checkbox~.contact-form__input--checkbox,
+        .contact-form__input--radio~.contact-form__input--radio {
+            margin-left: 16px;
+            margin-left: 1rem;
+        }
+
+        .contact-form__input:focus,
+        .contact-form__input:active {
+            border-color: #686a69;
+            outline: 0;
+        }
+
+        .contact-form__button {
+            display: block;
+            margin: 8px 16px 0;
+            margin: 0.5rem 1rem 0;
+            padding: 0 16px 2px;
+            padding: 0 1rem 0.125rem;
+            background-color: #686a69;
+            border: 0;
+            color: #f9fdfe;
+            font-family: lato, sans-serif;
+            font-size: 100%;
+            letter-spacing: 0.05em;
+            line-height: 1.5;
+            text-transform: uppercase;
+            -webkit-transition: 150ms all linear;
+            transition: 150ms all linear;
+        }
+
+        .contact-form__button:hover,
+        .contact-form__button:active,
+        .contact-form__button:focus {
+            background: #2a2f2c;
             cursor: pointer;
-            padding: 7px;
+            outline: 0;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        < /head>
+</head>
 
-        <
-        body >
-            <
-            div >
+<body>
+    <section class="content">
+        <h1 class="content__heading">Add New Event</h1>
+        <form class="content__form contact-form">
+            <div class="contact-form__input-group"><label class="contact-form__label" for="eventName">Event
+                    Name</label><input class="contact-form__input contact-form__input--text" id="eventName"
+                    name="eventName" type="text" /></div>
+            <div class="contact-form__input-group"><label class="contact-form__label" for="events">Event
+                    Location</label><select class="contact-form__input contact-form__input--select" id="events"
+                    name="events">
+                    <option>Location 1</option>
+                    <option>Location 2</option>
+                    <option>Location 3</option>
+                    <option>Location 4</option>
+                    <option>Location 5</option>
+                    <option>Location 6</option>
+                </select></div>
+            <div class="contact-form__input-group"><label class="contact-form__label" for="companySponsor">Company
+                    Sponsor</label><input class="contact-form__input contact-form__input--email" id="companySponsor"
+                    name="companySponsor" type="companySponsor" /></div>
+            <div class="contact-form__input-group"><label class="contact-form__label" for="companySponsor">Event
+                    Date</label><input class="contact-form__input contact-form__input--email" id="eventDate"
+                    name="eventDate" type="eventDate" /></div>
+            <div class="contact-form__input-group"><label class="contact-form__label" for="message">Event
+                    Description</label><textarea class="contact-form__input contact-form__input--textarea" id="message"
+                    name="message" rows="6" cols="65"></textarea></div>
+            </div><input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7" /><button
+                class="contact-form__button" type="submit">Add New Event</button>
+        </form>
+    </section>
+    <div class="results">
+        <h2 class="results__heading">Form Data</h2>
+        <pre class="results__display-wrapper"><code class="results__display"></code></pre>
+    </div>
+</body>
+<script>
+    /**
+     * Checks that an element has a non-empty `name` and `value` property.
+     * @param  {Element} element  the element to check
+     * @return {Bool}             true if the element is an input, false if not
+     */
+    const isValidElement = element => {
+        return element.name && element.value;
+    };
 
-            <
-            !--Add few elements to the form-- >
+    /**
+     * Checks if an element’s value can be saved (e.g. not an unselected checkbox).
+     * @param  {Element} element  the element to check
+     * @return {Boolean}          true if the value should be added, false if not
+     */
+    const isValidValue = element => {
+        return (!['checkbox', 'radio'].includes(element.type) || element.checked);
+    };
 
-            <
-            h1 > Add New Event < /h1>
+    /**
+     * Checks if an input is a checkbox, because checkboxes allow multiple values.
+     * @param  {Element} element  the element to check
+     * @return {Boolean}          true if the element is a checkbox, false if not
+     */
+    const isCheckbox = element => element.type === 'checkbox';
 
+    /**
+     * Checks if an input is a `select` with the `multiple` attribute.
+     * @param  {Element} element  the element to check
+     * @return {Boolean}          true if the element is a multiselect, false if not
+     */
+    const isMultiSelect = element => element.options && element.multiple;
 
-            <
-            div >
-            <
-            input type = "text"
-        id = "eventName"
-        placeholder = "Event Name" / >
-            <
-            /div> <
-            div >
-            <
-            select id = "selLocation" >
-            <
-            option selected value = "" > --Event Location-- < /option> <
-            option value = "India" > California < /option> <
-            option value = "Japan" > Atlanta < /option> <
-            option value = "USA" > Florida < /option> <
-            /select> <
-            /div> <
-            div >
-            <
-            input type = "text"
-        id = "companySponsor"
-        placeholder = "Company Sponsor" / >
-            <
-            /div> <
-            div >
-            <
-            input type = "text"
-        id = "eventDate"
-        placeholder = "Event Date" / >
-            <
-            /div> <
-            div >
-            <
-            textarea id = "eventDescription"
-        name = "eventDescription"
-        placeholder = "Event description ..."
-        style = "height:100px" > < /textarea> <
-            /div> <
-            div >
-            <
-            input type = "button"
-        id = "bt"
-        value = "Save data to file"
-        onclick = "saveFile()" / >
-            <
-            /div>
+    /**
+     * Retrieves the selected options from a multi-select as an array.
+     * @param  {HTMLOptionsCollection} options  the options for the select
+     * @return {Array}                          an array of selected option values
+     */
+    const getSelectValues = options => [].reduce.call(options, (values, option) => {
+        return option.selected ? values.concat(option.value) : values;
+    }, []);
 
-            <
-            /div> <
-            /body> <
-            script >
-            const fs = require('fs');
+    /**
+     * A more verbose implementation of `formToJSON()` to explain how it works.
+     *
+     * NOTE: This function is unused, and is only here for the purpose of explaining how
+     * reducing form elements works.
+     *
+     * @param  {HTMLFormControlsCollection} elements  the form elements
+     * @return {Object}                               form data as an object literal
+     */
+    const formToJSON_deconstructed = elements => {
 
-        let saveFile = () => {
+        // This is the function that is called on each element of the array.
+        const reducerFunction = (data, element) => {
 
-            // Get the data from each element on the form.
-            const eventName = document.getElementById('eventName');
-            const eventLocation = document.getElementById('selLocation');
-            const companySponsor = document.getElementById('companySponsor');
-            const eventDate = document.getElementById('eventDate');
-            const eventDescription = document.getElementById('eventDescription');
+            // Add the current field to the object.
+            data[element.name] = element.value;
 
-            // This variable stores all the data.
-            let data =
-                '\r Event Name: ' + eventName.value + ' \r\n ' +
-                'Event Location: ' + eventLocation.value + ' \r\n ' +
-                'Company Sponsor: ' + companySponsor.value + ' \r\n ' +
-                'Event Date: ' + eventDate.value + ' \r\n ' +
-                'Event Description: ' + eventDescription.value;
+            // For the demo only: show each step in the reducer’s progress.
+            console.log(JSON.stringify(data));
 
-            // Convert the text to BLOB.
-            const textToBLOB = new Blob([data], {
-                type: 'text/plain'
-            });
-            const sFileName = 'formData.txt'; // The file to save the data.
+            return data;
+        };
 
-            let newLink = document.createElement("a");
-            newLink.download = sFileName;
+        // This is used as the initial value of `data` in `reducerFunction()`.
+        const reducerInitialValue = {};
 
-            if (window.webkitURL != null) {
-                newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        // To help visualize what happens, log the inital value, which we know is `{}`.
+        console.log('Initial `data` value:', JSON.stringify(reducerInitialValue));
+
+        // Now we reduce by `call`-ing `Array.prototype.reduce()` on `elements`.
+        const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
+
+        // The result is then returned for use elsewhere.
+        return formData;
+    };
+
+    /**
+     * Retrieves input data from a form and returns it as a JSON object.
+     * @param  {HTMLFormControlsCollection} elements  the form elements
+     * @return {Object}                               form data as an object literal
+     */
+    const formToJSON = elements => [].reduce.call(elements, (data, element) => {
+
+        // Make sure the element has the required properties and should be added.
+        if (isValidElement(element) && isValidValue(element)) {
+
+            /*
+             * Some fields allow for more than one value, so we need to check if this
+             * is one of those fields and, if so, store the values as an array.
+             */
+            if (isCheckbox(element)) {
+                data[element.name] = (data[element.name] || []).concat(element.value);
+            } else if (isMultiSelect(element)) {
+                data[element.name] = getSelectValues(element);
             } else {
-                newLink.href = window.URL.createObjectURL(textToBLOB);
-                newLink.style.display = "none";
-                document.body.appendChild(newLink);
+                data[element.name] = element.value;
             }
-
-            newLink.click();
         }
-    </script>
+
+        return data;
+    }, {});
+
+    /**
+     * A handler function to prevent default submission and run our custom script.
+     * @param  {Event} event  the submit event triggered by the user
+     * @return {void}
+     */
+    const handleFormSubmit = event => {
+
+        // Stop the form from submitting since we’re handling that with AJAX.
+        event.preventDefault();
+
+        // Call our function to get the form data.
+        const data = formToJSON(form.elements);
+
+        // Demo only: print the form data onscreen as a formatted JSON object.
+        const dataContainer = document.getElementsByClassName('results__display')[0];
+
+        // Use `JSON.stringify()` to make the output valid, human-readable JSON.
+        dataContainer.textContent = JSON.stringify(data, null, "  ");
+
+        // ...this is where we’d actually do something with the form data...
+    };
+
+    /*
+     * This is where things actually get started. We find the form element using
+     * its class name, then attach the `handleFormSubmit()` function to the 
+     * `submit` event.
+     */
+    const form = document.getElementsByClassName('contact-form')[0];
+    form.addEventListener('submit', handleFormSubmit);
+</script>
 
 </html>
