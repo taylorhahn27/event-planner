@@ -174,9 +174,15 @@
     <section class="content">
         <h1 class="content__heading">Add New Event</h1>
         <form class="content__form contact-form">
-            <div class="contact-form__input-group"><label class="contact-form__label" for="eventName">Event
-                    Name</label><input class="contact-form__input contact-form__input--text" id="eventName"
-                    name="eventName" type="text" /></div>
+            <div class="contact-form__input-group"><label class="contact-form__label" for="event">Event
+                    Name</label><select class="contact-form__input contact-form__input--select" id="event" name="event">
+                    <option>DI to the Firm</option>
+                    <option>Event 1</option>
+                    <option>Event 2</option>
+                    <option>Event 3</option>
+                    <option>Event 4</option>
+                    <option>Event 5</option>
+                </select></div>
             <div class="contact-form__input-group"><label class="contact-form__label" for="event">Event
                     Location</label><select class="contact-form__input contact-form__input--select" id="event"
                     name="event">
@@ -248,42 +254,6 @@
     }, []);
 
     /**
-     * A more verbose implementation of `formToJSON()` to explain how it works.
-     *
-     * NOTE: This function is unused, and is only here for the purpose of explaining how
-     * reducing form elements works.
-     *
-     * @param  {HTMLFormControlsCollection} elements  the form elements
-     * @return {Object}                               form data as an object literal
-     */
-    const formToJSON_deconstructed = elements => {
-
-        // This is the function that is called on each element of the array.
-        const reducerFunction = (data, element) => {
-
-            // Add the current field to the object.
-            data[element.name] = element.value;
-
-            // For the demo only: show each step in the reducer’s progress.
-            console.log(JSON.stringify(data));
-
-            return data;
-        };
-
-        // This is used as the initial value of `data` in `reducerFunction()`.
-        const reducerInitialValue = {};
-
-        // To help visualize what happens, log the inital value, which we know is `{}`.
-        console.log('Initial `data` value:', JSON.stringify(reducerInitialValue));
-
-        // Now we reduce by `call`-ing `Array.prototype.reduce()` on `elements`.
-        const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
-
-        // The result is then returned for use elsewhere.
-        return formData;
-    };
-
-    /**
      * Retrieves input data from a form and returns it as a JSON object.
      * @param  {HTMLFormControlsCollection} elements  the form elements
      * @return {Object}                               form data as an object literal
@@ -307,7 +277,9 @@
         }
 
         return data;
+        console.log(data)
     }, {});
+
 
     /**
      * A handler function to prevent default submission and run our custom script.
@@ -321,6 +293,7 @@
 
         // Call our function to get the form data.
         const data = formToJSON(form.elements);
+
 
         // Demo only: print the form data onscreen as a formatted JSON object.
         const dataContainer = document.getElementsByClassName('results__display')[0];
