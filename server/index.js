@@ -35,7 +35,7 @@ app.put('/events/:id', async (req, res) => {
             [events_name, events_location, events_sponsor, events_date, events_message, id]
         )
 
-        res.json(updateEvent)
+        res.json(updateEvent.rows[0])
     } catch (err) {
         console.error(err.message)
     }
