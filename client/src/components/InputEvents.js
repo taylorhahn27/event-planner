@@ -17,13 +17,14 @@ const InputEvents = () => {
 				events_date,
 				events_message,
 			}
-			const response = await fetch('http://localhost:5000/add-event', {
+
+			await fetch('http://localhost:5000/add-event', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
 			})
 
-			console.log(response)
+			window.location = '/'
 		} catch (err) {
 			console.error(err.message)
 		}

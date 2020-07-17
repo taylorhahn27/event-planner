@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import InputEvents from './components/InputEvents'
+import ListEvents from './components/ListEvents'
 import './App.css'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 		<Fragment>
 			<div className='container'>
 				<InputEvents />
+				<ListEvents />
 			</div>
 		</Fragment>
 	)
