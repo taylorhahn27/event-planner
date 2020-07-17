@@ -14,6 +14,8 @@ const pool = new Pool({
   host: "ec2-34-225-162-157.compute-1.amazonaws.com",
   port: 5432,
   database: "detfrjs6u40o6o",
+  dialect: "postgres",
+  ssl: { rejectUnauthorized: false },
 });
 
 module.exports = pool;
