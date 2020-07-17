@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import moment from 'moment'
 
+//editing text within edit event form is not working
+
 const EditEvents = ({ event }) => {
 	const [eventsData, setEvents] = useState(event)
 	const [events_name, setEventName] = useState(event.events_name)
