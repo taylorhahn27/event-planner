@@ -23,7 +23,7 @@ const SignUpForm = ({ event }) => {
 				body: JSON.stringify(body),
 			})
 
-			window.location = '/'
+			window.location = '/events'
 		} catch (err) {
 			console.error(err.message)
 		}

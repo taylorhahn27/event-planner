@@ -24,7 +24,8 @@ const InputEvents = () => {
 				body: JSON.stringify(body),
 			})
 
-			window.location = '/'
+			document.getElementById('event-form').reset()
+			window.location = '/events'
 		} catch (err) {
 			console.error(err.message)
 		}
@@ -33,7 +34,7 @@ const InputEvents = () => {
 	return (
 		<Fragment>
 			<h1 className='text-center mt-5'>Add Events</h1>
-			<form className='mt-5' onSubmit={onSubmitForm}>
+			<form className='mt-5' id='event-form' onSubmit={onSubmitForm}>
 				<div className='form-group'>
 					<input
 						type='text'

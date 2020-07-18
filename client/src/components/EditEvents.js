@@ -22,13 +22,14 @@ const EditEvents = ({ event }) => {
 				events_date,
 				events_message,
 			}
+
 			await fetch(`http://localhost:5000/events/${event.events_id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
 			})
 
-			window.location = '/'
+			window.location = '/events'
 		} catch (err) {
 			console.error(err.message)
 		}
