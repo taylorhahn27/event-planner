@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import EditEvents from './EditEvents'
+import SignUpForm from './SignUpForm'
 import moment from 'moment'
 
 const ListEvents = () => {
@@ -34,6 +35,7 @@ const ListEvents = () => {
 
 	return (
 		<Fragment>
+			<h1 className='text-center mt-5'>Events</h1>
 			<table className='table table-striped table-hover mt-5 text-center'>
 				<thead>
 					<tr>
@@ -42,6 +44,7 @@ const ListEvents = () => {
 						<th>Sponsored by</th>
 						<th>Date</th>
 						<th>Edit</th>
+						<th>Sign Up</th>
 						<th>Delete</th>
 					</tr>
 				</thead>
@@ -54,6 +57,9 @@ const ListEvents = () => {
 							<td>{moment(event.events_date).format('MMM Do YY')}</td>
 							<td>
 								<EditEvents event={event} />
+							</td>
+							<td>
+								<SignUpForm event={event} />
 							</td>
 							<td>
 								<button
