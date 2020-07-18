@@ -1,6 +1,7 @@
 import React from 'react'
 import InputEvents from './InputEvents'
 import ListEvents from './ListEvents'
+import ListEventDetails from './ListEventDetails'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import '../App.css'
 
@@ -28,6 +29,7 @@ const HomePage = () => {
 				<Switch>
 					<Route path='/add-event' component={InputEvents} />
 					<Route path='/events' component={ListEvents} />
+					<Route path='/event-details' component={ListEventDetails} />
 				</Switch>
 			</div>
 		</Router>

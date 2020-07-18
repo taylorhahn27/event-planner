@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import EditEvents from './EditEvents'
 import SignUpForm from './SignUpForm'
 import moment from 'moment'
@@ -51,7 +52,9 @@ const ListEvents = () => {
 				<tbody>
 					{eventsData.map((event) => (
 						<tr key={event.events_id}>
-							<td>{event.events_name}</td>
+							<td>
+								<Link to='/event-details'>{event.events_name}</Link>
+							</td>
 							<td>{event.events_location}</td>
 							<td>{event.events_sponsor}</td>
 							<td>{moment(event.events_date).format('MMM Do YY')}</td>

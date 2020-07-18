@@ -106,6 +106,17 @@ app.get('/events/:id', async (req, res) => {
 	}
 })
 
+// get all contacts for an event
+app.get('/contacts/', async (req, res) => {
+	try {
+		const event = await pool.query('SELECT * FROM contacts')
+
+		res.json(event.rows)
+	} catch (err) {
+		console.error(err.message)
+	}
+})
+
 // sign up to an event
 app.post('/sign-up', async (req, res) => {
 	try {

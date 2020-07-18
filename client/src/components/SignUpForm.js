@@ -80,7 +80,7 @@ const SignUpForm = ({ event }) => {
 									type='text'
 									className='form-control'
 									value={event.events_name}
-									onChange={(e) => setEvents([e.target.value])}
+									onChange={(e) => setEvents([e.target.value.toString()])}
 								/>
 							</div>
 						</div>
