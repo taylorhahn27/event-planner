@@ -24,8 +24,8 @@ const InputEvents = () => {
         body: JSON.stringify(body),
       });
 
-<<<<<<< HEAD
-      window.location = "/";
+      document.getElementById("event-form").reset();
+      window.location = "/events";
     } catch (err) {
       console.error(err.message);
     }
@@ -34,7 +34,7 @@ const InputEvents = () => {
   return (
     <Fragment>
       <h1 className="text-center mt-5">Add Events</h1>
-      <form className="mt-5" onSubmit={onSubmitForm}>
+      <form className="mt-5" id="event-form" onSubmit={onSubmitForm}>
         <div className="form-group">
           <input
             type="text"
@@ -85,68 +85,5 @@ const InputEvents = () => {
     </Fragment>
   );
 };
-=======
-			document.getElementById('event-form').reset()
-			window.location = '/events'
-		} catch (err) {
-			console.error(err.message)
-		}
-	}
-
-	return (
-		<Fragment>
-			<h1 className='text-center mt-5'>Add Events</h1>
-			<form className='mt-5' id='event-form' onSubmit={onSubmitForm}>
-				<div className='form-group'>
-					<input
-						type='text'
-						className='form-control'
-						placeholder='Event Name'
-						value={events_name}
-						onChange={(e) => setEventName(e.target.value)}
-					/>
-				</div>
-				<div className='form-group'>
-					<input
-						type='text'
-						className='form-control'
-						placeholder='Event Location'
-						value={events_location}
-						onChange={(e) => setEventLocation(e.target.value)}
-					/>
-				</div>
-				<div className='form-group'>
-					<input
-						type='text'
-						className='form-control'
-						placeholder='Event Sponsor'
-						value={events_sponsor}
-						onChange={(e) => setEventSponsor(e.target.value)}
-					/>
-				</div>
-				<div className='form-group'>
-					<input
-						type='text'
-						className='form-control'
-						placeholder='Event Date'
-						value={events_date}
-						onChange={(e) => setEventDate(e.target.value)}
-					/>
-				</div>
-				<div className='form-group'>
-					<input
-						type='text'
-						className='form-control'
-						placeholder='Event Message'
-						value={events_message}
-						onChange={(e) => setEventMessage(e.target.value)}
-					/>
-				</div>
-				<button className='btn btn-success'>Add</button>
-			</form>
-		</Fragment>
-	)
-}
->>>>>>> 6d7dfcc9d6975619c357437201249fb0f465f020
 
 export default InputEvents;
