@@ -1,17 +1,9 @@
-import React, { Fragment } from 'react'
-import InputEvents from './components/InputEvents'
-import ListEvents from './components/ListEvents'
+import React from 'react'
+import HomePage from './components/HomePage'
 import './App.css'
 
-function App() {
-	return (
-		<Fragment>
-			<div className='container'>
-				<InputEvents />
-				<ListEvents />
-			</div>
-		</Fragment>
-	)
+const App = () => {
+	return <HomePage />
 }
 
 export default App
