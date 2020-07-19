@@ -2,28 +2,22 @@ import React, { Fragment, useState, useEffect } from 'react'
 
 const ListEventDetails = () => {
 	const [contactsData, setContactsData] = useState([])
-	const [eventsData, setEvents] = useState([])
+	const [eventsDetails, setEvents] = useState([])
 
 	const getDetails = async () => {
 		try {
-			const response = await fetch(`http://localhost:5000/events/35`)
-			const jsonData = await response.json()
+			const eventResponse = await fetch(`http://localhost:5000/events/7`)
+			const contactResponse = await fetch('http://localhost:5000/contacts')
 
-			setEvents(jsonData)
-		} catch (err) {
-			console.error(err.message)
-		}
-	}
+			const eventJson = await eventResponse.json()
+			const contactJson = await contactResponse.json()
 
-	const getContacts = async () => {
-		try {
-			const response = await fetch('http://localhost:5000/contacts')
-			const jsonData = await response.json()
-			const contactData = jsonData.filter(async (eventName) => {
-				return eventName.contacts_events.includes(eventsData.events_name)
+			const contactData = contactJson.filter((eventName) => {
+				return eventName.contacts_events[0].includes(eventJson.events_name)
 			})
 
 			setContactsData(contactData)
+			setEvents(eventJson)
 		} catch (err) {
 			console.error(err.message)
 		}
@@ -31,13 +25,12 @@ const ListEventDetails = () => {
 
 	useEffect(() => {
 		getDetails()
-		getContacts()
 	}, [])
 
 	return (
 		<Fragment>
-			<h1 className='text-center mt-5'>{eventsData.events_name}</h1>
-			<h4 className='text-center mt-5'>{eventsData.events_message}</h4>
+			<h1 className='text-center mt-5'>{eventsDetails.events_name}</h1>
+			<h4 className='text-center mt-5'>{eventsDetails.events_message}</h4>
 			<table className='table table-striped table-hover mt-5 text-center'>
 				<thead>
 					<tr>
