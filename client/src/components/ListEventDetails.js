@@ -74,4 +74,3 @@ const ListEventDetails = () => {
 };
 
 export default ListEventDetails;
-gi;
