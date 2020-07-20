@@ -57,7 +57,6 @@ const EditEvents = ({ event }) => {
 								This button makes sure to set the form back to its
 								original state if changes were entered but not submitted
 								due to pressing the X button instead of Edit button
-								(NOT finished, form fields persisting for some reason)
 							*/}
 							<button
 								type='button'
@@ -131,7 +130,6 @@ const EditEvents = ({ event }) => {
 								This button makes sure to set the form back to its
 								original state if changes were entered but not submitted
 								due to pressing the Close button instead of Edit button
-								(NOT finished, form fields persisting for some reason)
 							*/}
 							<button
 								type='button'
