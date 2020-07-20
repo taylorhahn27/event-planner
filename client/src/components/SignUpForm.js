@@ -49,7 +49,12 @@ const SignUpForm = ({ event }) => {
 					<div className='modal-content'>
 						<div className='modal-header'>
 							<h4 className='modal-title'>Sign Up Form</h4>
-							<button type='button' className='close' data-dismiss='modal'>
+							<button
+								type='button'
+								className='close'
+								data-dismiss='modal'
+								onClick={() => (window.location = '/events')}
+							>
 								&times;
 							</button>
 						</div>
@@ -103,6 +108,7 @@ const SignUpForm = ({ event }) => {
 								type='button'
 								className='btn btn-danger'
 								data-dismiss='modal'
+								onClick={() => (window.location = '/events')}
 							>
 								Close
 							</button>

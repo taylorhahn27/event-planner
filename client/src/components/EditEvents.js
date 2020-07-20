@@ -4,8 +4,6 @@ import moment from 'moment'
 // Handles the form for editing a specific event by its id property
 // by taking in the event prop handed down from the ListEvents component
 const EditEvents = ({ event }) => {
-	// Declares and Sets states data as a whole using the useState() Hook based of event prop passed down (NOT finished, form fields persisting for some reason)
-	const [eventsData, setEvents] = useState(event)
 	// Declares and Sets default state for an events respective fields using the useState() Hook based of event prop passed down
 	const [events_name, setEventName] = useState(event.events_name)
 	const [events_location, setEventLocation] = useState(event.events_location)
@@ -65,7 +63,7 @@ const EditEvents = ({ event }) => {
 								type='button'
 								className='close'
 								data-dismiss='modal'
-								onClick={() => setEvents(eventsData)}
+								onClick={() => (window.location = '/events')}
 							>
 								&times;
 							</button>
@@ -139,7 +137,7 @@ const EditEvents = ({ event }) => {
 								type='button'
 								className='btn btn-danger'
 								data-dismiss='modal'
-								onClick={() => setEvents(eventsData)}
+								onClick={() => (window.location = '/events')}
 							>
 								Close
 							</button>

@@ -1,18 +1,20 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 // Handles the dispalying of the details of a specific event and listing all attendees who
-// signed up for that specific event (NOT finished, only hard coded for event with id 7 as of now)
+// signed up for that specific event
 const ListEventDetails = () => {
 	// Declares and Sets state for a specific event in an array of objects using the useState() Hook
 	const [contactsData, setContactsData] = useState([])
 	// Declares and Sets state for all contacts in an array of objects using the useState() Hook
 	const [eventsDetails, setEvents] = useState([])
+	const { id } = useParams()
 
-	// Handles getting the specified event (NOT finished, only hard coded for event with id 7 as of now)
+	// Handles getting the specified event
 	// as well as all contacts who have signed up for said specified event
 	const getDetails = async () => {
 		try {
-			const eventResponse = await fetch(`http://localhost:5000/events/7`)
+			const eventResponse = await fetch(`http://localhost:5000/events/${id}`)
 			const contactResponse = await fetch('http://localhost:5000/contacts')
 
 			const eventJson = await eventResponse.json()

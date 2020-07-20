@@ -62,7 +62,9 @@ const ListEvents = () => {
 					{eventsData.map((event) => (
 						<tr key={event.events_id}>
 							<td>
-								<Link to='/event-details'>{event.events_name}</Link>
+								<Link to={`/event-details/${event.events_id}`}>
+									{event.events_name}
+								</Link>
 							</td>
 							<td>{event.events_location}</td>
 							<td>{event.events_sponsor}</td>

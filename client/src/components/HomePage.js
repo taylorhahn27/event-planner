@@ -30,7 +30,7 @@ const HomePage = () => {
 				<Switch>
 					<Route path='/add-event' component={InputEvents} />
 					<Route path='/events' component={ListEvents} />
-					<Route path='/event-details' component={ListEventDetails} />
+					<Route path='/event-details/:id' component={ListEventDetails} />
 				</Switch>
 			</div>
 		</Router>
