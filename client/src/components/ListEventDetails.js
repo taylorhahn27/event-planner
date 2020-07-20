@@ -40,7 +40,12 @@ const ListEventDetails = () => {
   return (
     <Fragment>
       <h1 className="text-center mt-5">{eventsDetails.events_name}</h1>
+      <h3 className="text-center mt-5">
+        Sponsored by: {eventsDetails.events_sponsor}
+      </h3>
       <h4 className="text-center mt-5">{eventsDetails.events_message}</h4>
+      <p className="text-center mt-5">{eventsDetails.events_location}</p>
+      <p className="text-center mt-5">{eventsDetails.events_date}</p>
       <table className="table table-striped table-hover mt-5 text-center">
         <thead>
           <tr>
@@ -69,3 +74,4 @@ const ListEventDetails = () => {
 };
 
 export default ListEventDetails;
+gi;
