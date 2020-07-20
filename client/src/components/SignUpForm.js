@@ -1,11 +1,15 @@
 import React, { Fragment, useState } from 'react'
 
+// Handles displaying a form to sign up to a specific event
+// and adds that contacts info to the contacts table in the db
 const SignUpForm = ({ event }) => {
+	// Declares and Sets states for the respective data points using the useState() Hook
 	const [contacts_first_name, setFirstName] = useState('')
 	const [contacts_last_name, setLastName] = useState('')
 	const [contacts_email, setEmail] = useState('')
 	const [contacts_events, setEvents] = useState([event.events_name])
 
+	// Handles adding a contact to the db with the respective data
 	const signUp = async (e) => {
 		e.preventDefault()
 
@@ -45,7 +49,12 @@ const SignUpForm = ({ event }) => {
 					<div className='modal-content'>
 						<div className='modal-header'>
 							<h4 className='modal-title'>Sign Up Form</h4>
-							<button type='button' className='close' data-dismiss='modal'>
+							<button
+								type='button'
+								className='close'
+								data-dismiss='modal'
+								onClick={() => (window.location = '/events')}
+							>
 								&times;
 							</button>
 						</div>
@@ -99,6 +108,7 @@ const SignUpForm = ({ event }) => {
 								type='button'
 								className='btn btn-danger'
 								data-dismiss='modal'
+								onClick={() => (window.location = '/events')}
 							>
 								Close
 							</button>

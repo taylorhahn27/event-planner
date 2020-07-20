@@ -1,14 +1,17 @@
 import React, { Fragment, useState } from 'react'
 import moment from 'moment'
 
+// Handles the form for editing a specific event by its id property
+// by taking in the event prop handed down from the ListEvents component
 const EditEvents = ({ event }) => {
-	const [eventsData, setEvents] = useState(event)
+	// Declares and Sets default state for an events respective fields using the useState() Hook based of event prop passed down
 	const [events_name, setEventName] = useState(event.events_name)
 	const [events_location, setEventLocation] = useState(event.events_location)
 	const [events_sponsor, setEventSponsor] = useState(event.events_sponsor)
 	const [events_date, setEventDate] = useState(event.events_date)
 	const [events_message, setEventMessage] = useState(event.events_message)
 
+	// Handles fetching the specific events data and updating the respective changes in the db
 	const updateEvent = async (e) => {
 		e.preventDefault()
 
@@ -21,6 +24,7 @@ const EditEvents = ({ event }) => {
 				events_message,
 			}
 
+			// Fetches an event based of the events_id parameter and updates the db using the PUT method
 			await fetch(`http://localhost:5000/events/${event.events_id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
@@ -44,20 +48,21 @@ const EditEvents = ({ event }) => {
 				Edit
 			</button>
 
-			<div
-				className='modal'
-				id={`id${event.events_id}`}
-				onClick={() => setEvents(eventsData)}
-			>
+			<div className='modal' id={`id${event.events_id}`}>
 				<div className='modal-dialog'>
 					<div className='modal-content'>
 						<div className='modal-header'>
 							<h4 className='modal-title'>Edit Event</h4>
+							{/*
+								This button makes sure to set the form back to its
+								original state if changes were entered but not submitted
+								due to pressing the X button instead of Edit button
+							*/}
 							<button
 								type='button'
 								className='close'
 								data-dismiss='modal'
-								onClick={() => setEvents(eventsData)}
+								onClick={() => (window.location = '/events')}
 							>
 								&times;
 							</button>
@@ -106,6 +111,11 @@ const EditEvents = ({ event }) => {
 							</div>
 						</div>
 
+						{/*
+								This button calls the updateEvent method which is
+								responsible for actually submitting the changes
+								to the db
+							*/}
 						<div className='modal-footer'>
 							<button
 								type='button'
@@ -116,11 +126,16 @@ const EditEvents = ({ event }) => {
 								Edit
 							</button>
 
+							{/*
+								This button makes sure to set the form back to its
+								original state if changes were entered but not submitted
+								due to pressing the Close button instead of Edit button
+							*/}
 							<button
 								type='button'
 								className='btn btn-danger'
 								data-dismiss='modal'
-								onClick={() => setEvents(eventsData)}
+								onClick={() => (window.location = '/events')}
 							>
 								Close
 							</button>

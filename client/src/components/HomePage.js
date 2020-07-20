@@ -5,6 +5,7 @@ import ListEventDetails from './ListEventDetails'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import '../App.css'
 
+// Handles the HomePage and navbar as well as the routing for individual pages
 const HomePage = () => {
 	return (
 		<Router>
@@ -29,7 +30,7 @@ const HomePage = () => {
 				<Switch>
 					<Route path='/add-event' component={InputEvents} />
 					<Route path='/events' component={ListEvents} />
-					<Route path='/event-details' component={ListEventDetails} />
+					<Route path='/event-details/:id' component={ListEventDetails} />
 				</Switch>
 			</div>
 		</Router>
