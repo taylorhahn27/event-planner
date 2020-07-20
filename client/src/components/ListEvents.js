@@ -4,9 +4,12 @@ import EditEvents from './EditEvents'
 import SignUpForm from './SignUpForm'
 import moment from 'moment'
 
+// Handles listing out all events created into a table
 const ListEvents = () => {
+	// Declares and Sets state for all events into an array of objects using the useState() Hook
 	const [eventsData, setEvents] = useState([])
 
+	// Handles fetching all events using the server.js api GET method
 	const getEvents = async () => {
 		try {
 			const response = await fetch('http://localhost:5000/events')
@@ -18,6 +21,7 @@ const ListEvents = () => {
 		}
 	}
 
+	// Handles fetching a specific event to be deleted based off an events id using the server.js api DELETE method
 	const deleteEvent = async (id) => {
 		try {
 			await fetch(`http://localhost:5000/events/${id}`, {
@@ -50,6 +54,11 @@ const ListEvents = () => {
 					</tr>
 				</thead>
 				<tbody>
+					{/*
+						Takes the state eventsData which is an array of objects containing
+						all events and maps them to a table as well as passing down
+						state as props to the EditEvents and SignUpForm components
+					*/}
 					{eventsData.map((event) => (
 						<tr key={event.events_id}>
 							<td>
@@ -57,7 +66,7 @@ const ListEvents = () => {
 							</td>
 							<td>{event.events_location}</td>
 							<td>{event.events_sponsor}</td>
-							<td>{moment(event.events_date).format('MMM Do YY')}</td>
+							<td>{moment(event.events_date).format('L')}</td>
 							<td>
 								<EditEvents event={event} />
 							</td>

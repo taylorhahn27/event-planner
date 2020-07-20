@@ -5,6 +5,7 @@ import ListEventDetails from './ListEventDetails'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import '../App.css'
 
+// Handles the HomePage and navbar as well as the routing for individual pages
 const HomePage = () => {
 	return (
 		<Router>
